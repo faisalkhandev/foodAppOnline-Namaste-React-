@@ -1,4 +1,4 @@
-import { Header } from "./components"
+import { Body, Footer, Header } from "./components"
 
 
 const App = () => {
@@ -6,7 +6,8 @@ const App = () => {
     <div>
 
       <Header />
-
+      <Body />
+      <Footer />
 
     </div>
   )
