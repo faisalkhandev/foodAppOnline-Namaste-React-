@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { NO_IMAGE_AVAILABLE } from "../utils/Constants";
 
 const Card = ({ listOfRest }) => {
