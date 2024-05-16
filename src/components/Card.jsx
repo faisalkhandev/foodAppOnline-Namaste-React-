@@ -4,7 +4,7 @@ import { NO_IMAGE_AVAILABLE } from "../utils/Constants";
 const Card = ({ listOfRest }) => {
     console.log("restaurants::", listOfRest);
 
-    if (!listOfRest || !Array.isArray(listOfRest)) {
+    if (!listOfRest) {
         return <p>No restaurants available.</p>;
     }
 
