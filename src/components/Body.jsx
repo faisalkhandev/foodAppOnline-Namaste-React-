@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import Card from "./Card";
 
@@ -21,12 +22,12 @@ const Body = () => {
 
     useEffect(() => {
         getRestaurants();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+
     }, []);
 
-    function topRestaurants() {
+    function topRestaurants(num) {
         const topRes = listOfRest.filter((res) => {
-            if (res?.info?.avgRating >= 4.4)
+            if (res?.info?.avgRating >= num)
                 return res
         })
         setListOfRest(topRes)
@@ -63,13 +64,15 @@ const Body = () => {
                 </div>
             </div>
             <hr className="mt-6" />
-            <h1 className="p-4 font-bold text-center text-base">
+            <h1 className="p-4 font-bold text-center text-2xl">
                 OUR TOP RESTAURANTS{" "}
             </h1>
             <div className="flex items-center justify-center">
-                <button className="p-3 bg-slate-600 text-white m-6 rounded-lg text-lg font-semibold " onClick={topRestaurants}>
-                    Top Restaurants
+                <button className="p-3 bg-slate-600 text-white m-6 rounded-lg text-lg font-semibold " onClick={() => topRestaurants(4)}>
+                    4 ⭐ Restaurants
                 </button>
+
+                <span className="text-slate-600 text-xl font-bold">Count of Restaurants {listOfRest?.length}</span>
             </div>
             <div className="m-10">
                 <Card listOfRest={listOfRest} />
