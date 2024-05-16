@@ -1,4 +1,4 @@
-import { Body, Footer, Header } from "./components"
+import { Body, Footer, Header, Shrimmer } from "./components"
 
 
 const App = () => {
@@ -8,6 +8,7 @@ const App = () => {
       <Header />
       <Body />
       <Footer />
+
 
     </div>
   )

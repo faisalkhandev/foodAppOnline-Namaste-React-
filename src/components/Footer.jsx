@@ -2,8 +2,8 @@
 
 export function Footer() {
     return (
-        <section className="relative overflow-hidden py-10">
-            <div className="relative z-10 mx-auto max-w-7xl px-4">
+        <section className="relative overflow-hidden py-10 shadow-2xl">
+            <div className="relative z-10 mx-auto max-w-7xl py-4">
                 <div className="-m-6 flex flex-wrap">
                     <div className="w-full p-6 md:w-1/2 lg:w-5/12">
                         <div className="flex h-full flex-col">
@@ -15,7 +15,6 @@ export function Footer() {
                             </div>
                             <div>
                                 <p className="mt-4  text-base font-bold">Food App by Namaste React</p>
-
                             </div>
                         </div>
                     </div>

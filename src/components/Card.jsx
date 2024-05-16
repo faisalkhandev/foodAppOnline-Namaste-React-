@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { NO_IMAGE_AVAILABLE } from "../utils/Constants";
+import Shrimmer from "./Shrimmer";
 
 const Card = ({ listOfRest }) => {
     console.log("restaurants::", listOfRest);
@@ -7,6 +8,8 @@ const Card = ({ listOfRest }) => {
     if (!listOfRest) {
         return <p>No restaurants available.</p>;
     }
+
+    !listOfRest ? <Shrimmer /> : ""
 
     return (
         <>

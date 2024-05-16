@@ -22,7 +22,6 @@ const Body = () => {
 
     useEffect(() => {
         getRestaurants();
-
     }, []);
 
     function topRestaurants(num) {
@@ -72,7 +71,7 @@ const Body = () => {
                     4 ⭐ Restaurants
                 </button>
 
-                <span className="text-slate-600 text-xl font-bold">Count of Restaurants {listOfRest?.length}</span>
+                <span className="text-slate-600 text-xl font-bold">Total Restaurants({listOfRest?.length})</span>
             </div>
             <div className="m-10">
                 <Card listOfRest={listOfRest} />
