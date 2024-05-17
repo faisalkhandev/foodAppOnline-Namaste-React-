@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 import Card from "./Card";
 
 const Body = () => {
-    // useState
+    // States
     const [listOfRest, setListOfRest] = useState([]);
+    const [searchText, setSearchText] = useState("");
+    const [filterRestaurants, setFilterRestaurants] = useState([])
 
     // functions
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -17,7 +19,11 @@ const Body = () => {
             json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
                 ?.restaurants || []
         );
-        console.log("Data:::", listOfRest);
+        setFilterRestaurants(
+            json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+                ?.restaurants || []
+        );
+
     };
 
     useEffect(() => {
@@ -26,13 +32,10 @@ const Body = () => {
 
     function topRestaurants(num) {
         const topRes = listOfRest.filter((res) => {
-            if (res?.info?.avgRating >= num)
-                return res
-        })
-        setListOfRest(topRes)
+            if (res?.info?.avgRating >= num) return res;
+        });
+        setListOfRest(topRes);
     }
-
-
 
     return (
         <div className="mx-auto max-w-7xl px-4">
@@ -50,7 +53,8 @@ const Body = () => {
                     </p>
                     <button
                         type="button"
-                        className="bg-slate-600 text-white rounded-lg text-sm font-semibold p-3">
+                        className="bg-slate-600 text-white rounded-lg text-sm font-semibold p-3"
+                    >
                         Sign Up
                     </button>
                 </div>
@@ -67,14 +71,39 @@ const Body = () => {
                 OUR TOP RESTAURANTS{" "}
             </h1>
             <div className="flex items-center justify-center">
-                <button className="p-3 bg-slate-600 text-white m-6 rounded-lg text-lg font-semibold " onClick={() => topRestaurants(4)}>
+                <button
+                    className="p-3 bg-slate-600 text-white m-6 rounded-lg text-lg font-semibold "
+                    onClick={() => topRestaurants(4)}
+                >
                     4 ⭐ Restaurants
                 </button>
 
-                <span className="text-slate-600 text-xl font-bold">Total Restaurants({listOfRest?.length})</span>
+                <span className="text-slate-600 text-xl font-bold">
+                    Total Restaurants({listOfRest?.length})
+                </span>
+
+                <input
+                    type="search"
+                    name="search"
+                    className="p-3 rounded-lg text-sm font-semibold m-6 border-2 border-black focus:border-0"
+                    placeholder="Search for Restaurant"
+                    value={searchText}
+                    onChange={(e) => setSearchText(e.target.value)} />
+                <button
+                    type="button"
+                    className="bg-slate-800 text-white p-4 rounded-lg"
+                    onClick={() => {
+                        const filterRestaurants = listOfRest.filter((restaurant) =>
+                            restaurant?.info?.name?.toLowerCase().includes(searchText.toLowerCase())
+                        );
+                        setFilterRestaurants(filterRestaurants);
+                    }}>
+                    Search
+                </button>
+
             </div>
             <div className="m-10">
-                <Card listOfRest={listOfRest} />
+                <Card listOfRest={filterRestaurants} />
             </div>
         </div>
     );
