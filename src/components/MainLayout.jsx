@@ -1,8 +1,6 @@
-import { Outlet } from "react-router-dom"
-import Body from "./MainBody"
+import { MainBody } from "."
 import { Footer } from "./Footer"
 import { Header } from "./Header"
-import { MainBody } from "."
 
 const MainLayout = () => {
     return (
