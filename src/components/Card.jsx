@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { NO_IMAGE_AVAILABLE } from "../utils/Constants";
+import { IMAGE_URL, NO_IMAGE_AVAILABLE } from "../utils/Constants";
 import Shrimmer from "./Shrimmer";
 
 const Card = ({ listOfRest }) => {
@@ -20,7 +20,7 @@ const Card = ({ listOfRest }) => {
                         className="flex flex-col rounded-lg shadow-lg overflow-hidden"
                     >
                         <img
-                            src={restaurant.info.thumb || NO_IMAGE_AVAILABLE}
+                            src={IMAGE_URL + restaurant?.info?.cloudinaryImageId || NO_IMAGE_AVAILABLE}
                             alt={restaurant.info.name || "No Name available"}
                             className="h-48 w-full object-cover"
                         />
