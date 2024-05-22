@@ -18,6 +18,7 @@ const menuItems = [
 ];
 
 export function Header() {
+
     //hooks
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 

@@ -1,12 +1,12 @@
-import { MainBody } from "."
-import { Footer } from "./Footer"
-import { Header } from "./Header"
+import { Outlet } from "react-router-dom"
+import { Footer, Header } from "../components"
+
 
 const MainLayout = () => {
     return (
         <div>
             <Header />
-            <MainBody />
+            <Outlet />
             <Footer />
         </div>
     )

@@ -1,28 +1,33 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import { AboutUs, Contact, Error } from "./Pages"
-import { MainLayout } from "./components"
+import { MainBody, MainLayout } from "./components"
 
 
 const appRouter = createBrowserRouter([
   {
-    path: "/",
     element: <MainLayout />,
+    children: [
+      {
+        path: "/",
+        element: <MainBody />,
+        errorElement: <Error />
+      }
+      ,
+      {
+        path: "about",
+        element: <AboutUs />,
+        errorElement: <Error />
+      },
+      {
+        path: "contact",
+        element: <Contact />,
+        errorElement: <Error />
+      },
+
+    ],
     errorElement: <Error />,
+
   },
-  {
-    path: "about",
-    element: <AboutUs />,
-    errorElement: <Error />
-  },
-  {
-    path: "contact",
-    element: <Contact />,
-    errorElement: <Error />
-  },
-  {
-    path: "*",
-    element: <Error />
-  }
 
 ])
 
