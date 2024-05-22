@@ -2,7 +2,7 @@
 const AboutUs = () => {
     return (
         <div>
-            <h1>About us</h1>
+            <p className="flex align-middle justify-center h-screen font-bold">About Us</p>
         </div>
     )
 }

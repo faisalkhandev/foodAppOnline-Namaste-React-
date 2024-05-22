@@ -1,19 +1,19 @@
-
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const menuItems = [
     {
         name: "Home",
-        href: "#",
+        to: "/",
     },
     {
         name: "About",
-        href: "#",
+        to: "/about",
     },
     {
         name: "Contact",
-        href: "#",
+        to: "/contact",
     },
 ];
 
@@ -44,12 +44,12 @@ export function Header() {
                     <ul className="inline-flex space-x-8">
                         {menuItems.map((item) => (
                             <li key={item.name}>
-                                <a
-                                    href={item.href}
+                                <Link
+                                    to={item.to}
                                     className="text-sm font-semibold text-gray-800 hover:text-gray-900"
                                 >
                                     {item.name}
-                                </a>
+                                </Link>
                             </li>
                         ))}
                     </ul>
@@ -95,15 +95,15 @@ export function Header() {
                                 <div className="mt-6">
                                     <nav className="grid gap-y-4">
                                         {menuItems.map((item) => (
-                                            <a
+                                            <Link
                                                 key={item.name}
-                                                href={item.href}
+                                                to={item.to}
                                                 className="-m-3 flex items-center rounded-md p-3 text-sm font-semibold hover:bg-gray-50"
                                             >
                                                 <span className="ml-3 text-base font-medium text-gray-900">
                                                     {item.name}
                                                 </span>
-                                            </a>
+                                            </Link>
                                         ))}
                                     </nav>
                                 </div>
