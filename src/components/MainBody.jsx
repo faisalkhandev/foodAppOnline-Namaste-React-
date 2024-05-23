@@ -6,7 +6,7 @@ const Body = () => {
     // States
     const [listOfRest, setListOfRest] = useState([]);
     const [searchText, setSearchText] = useState("");
-    const [filterRestaurants, setFilterRestaurants] = useState([])
+    const [filterRestaurants, setFilterRestaurants] = useState([]);
 
     // functions
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -14,18 +14,35 @@ const Body = () => {
         const data = await fetch(
             "https://corsproxy.io/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D12.9351929%26lng%3D77.62448069999999%26page_type%3DDESKTOP_WEB_LISTING"
         );
+
+        { /*
+             ! this is one way of getting data. Kind of hard. you have to keep drilling. 
+              const json = await data.json();
+              console.log("json::", json)
+              setListOfRest(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []
+              );
+              setFilterRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []
+              );
+          */
+        }
+
+        //* This is the better way. Another approach
+
         const json = await data.json();
-        console.log("json::", json)
-        setListOfRest(
-            json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-                ?.restaurants || []
-        );
-        setFilterRestaurants(
-            json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
-                ?.restaurants || []
-        );
+        const arrayOfCards = json.data.cards;
+        const restaurant_list = "restaurant_grid_listing";
+        console.log("arrayofCards::", arrayOfCards);
+
+        arrayOfCards.map(cardObj => {
+            if (cardObj.card.card && cardObj.card.card.id === restaurant_list) {
+                const resData = cardObj.card?.card?.gridElements?.infoWithStyle?.restaurants;
+                setListOfRest(resData);
+                setFilterRestaurants(resData);
+            }
+        });
 
     };
+    console.log("listofRest::", listOfRest);
 
     useEffect(() => {
         getRestaurants();
@@ -89,19 +106,22 @@ const Body = () => {
                     className="p-3 rounded-lg text-sm font-semibold m-6 border-2 border-black focus:border-0"
                     placeholder="Search for Restaurant"
                     value={searchText}
-                    onChange={(e) => setSearchText(e.target.value)} />
+                    onChange={(e) => setSearchText(e.target.value)}
+                />
                 <button
                     type="button"
                     className="bg-slate-800 text-white p-4 rounded-lg"
                     onClick={() => {
                         const filterRestaurants = listOfRest.filter((restaurant) =>
-                            restaurant?.info?.name?.toLowerCase().includes(searchText.toLowerCase())
+                            restaurant?.info?.name
+                                ?.toLowerCase()
+                                .includes(searchText.toLowerCase())
                         );
                         setFilterRestaurants(filterRestaurants);
-                    }}>
+                    }}
+                >
                     Search
                 </button>
-
             </div>
             <div className="m-10">
                 <Card listOfRest={filterRestaurants} />
