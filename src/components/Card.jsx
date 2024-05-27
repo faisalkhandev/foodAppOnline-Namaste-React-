@@ -20,11 +20,13 @@ const Card = ({ listOfRest }) => {
                         key={restaurant.info.id}
                         className="flex flex-col rounded-lg shadow-lg overflow-hidden"
                     >
-                        <img
-                            src={IMAGE_URL + restaurant?.info?.cloudinaryImageId || NO_IMAGE_AVAILABLE}
-                            alt={restaurant.info.name || "No Name available"}
-                            className="h-48 w-full object-cover"
-                        />
+                        <Link to={"restaurant/" + restaurant.info.id}>
+                            <img
+                                src={IMAGE_URL + restaurant?.info?.cloudinaryImageId || NO_IMAGE_AVAILABLE}
+                                alt={restaurant.info.name || "No Name available"}
+                                className="h-48 w-full object-cover"
+                            />
+                        </Link>
                         <div className="p-4 flex-1">
                             <Link to={"restaurant/" + restaurant.info.id}><h2 className="text-xl font-bold mb-2">{restaurant.info.name}</h2></Link>
                             <p className="text-gray-600 mb-2">
