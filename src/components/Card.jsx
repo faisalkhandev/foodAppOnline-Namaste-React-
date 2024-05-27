@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
 import { IMAGE_URL, NO_IMAGE_AVAILABLE } from "../utils/Constants";
 import Shrimmer from "./Shrimmer";
 
@@ -25,7 +26,7 @@ const Card = ({ listOfRest }) => {
                             className="h-48 w-full object-cover"
                         />
                         <div className="p-4 flex-1">
-                            <h2 className="text-xl font-bold mb-2">{restaurant.info.name}</h2>
+                            <Link to={"restaurant/" + restaurant.info.id}><h2 className="text-xl font-bold mb-2">{restaurant.info.name}</h2></Link>
                             <p className="text-gray-600 mb-2">
                                 {restaurant.info.cuisines.join(", ")}
                             </p>
@@ -39,7 +40,7 @@ const Card = ({ listOfRest }) => {
                         </div>
                     </div>
                 ))}
-            </div>
+            </div >
         </>
     );
 };
