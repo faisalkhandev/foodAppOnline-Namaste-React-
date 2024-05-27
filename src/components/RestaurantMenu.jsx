@@ -28,7 +28,7 @@ const RestaurantMenu = () => {
 
     if (!restInfo) return <Shrimmer />;
 
-    const { name, cuisines, costForTwoMessage, avgRating } = restInfo?.data?.cards[2]?.card?.card?.info || "Restaurant Name";
+    const { name, cuisines, costForTwoMessage, avgRating, totalRatingsString, slugs } = restInfo?.data?.cards[2]?.card?.card?.info || "Restaurant Name??";
 
 
     return (
@@ -39,17 +39,17 @@ const RestaurantMenu = () => {
                     <nav className="text-gray-500 text-sm mb-4">
                         <a href="#" className="hover:text-gray-700">Home</a>
                         <span className="mx-1">/</span>
-                        <a href="#" className="hover:text-gray-700">Delhi</a>
+                        <a href="#" className="hover:text-gray-700">{slugs?.city.toUpperCase()}</a>
                         <span className="mx-1">/</span>
-                        <span className="text-gray-900">Pizza Hut</span>
+                        <span className="text-gray-900">{name}</span>
                     </nav>
-                    <h1 className="text-3xl font-bold text-black mb-4">Pizza Hut</h1>
+                    <h1 className="text-3xl font-bold text-black mb-4 my-6">{name}</h1>
                     <div className="bg-white shadow-md rounded-lg p-4">
                         <div className="flex items-center mb-2">
-                            <span className="text-green-500 font-bold">4.0</span>
-                            <span className="text-gray-600 ml-2">(5K+ ratings)</span>
+                            <span className="text-green-500 font-bold">{avgRating}</span>
+                            <span className="text-gray-600 ml-2">{totalRatingsString}</span>
                             <span className="text-gray-600 mx-2">·</span>
-                            <span className="text-gray-600">₹350 for two</span>
+                            <span className="text-gray-600">{costForTwoMessage}</span>
                         </div>
                         <div className="text-orange-500 font-semibold mb-2">Pizzas</div>
                         <div className="flex items-center mb-2">
