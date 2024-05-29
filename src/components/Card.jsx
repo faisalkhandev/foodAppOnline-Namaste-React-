@@ -32,8 +32,8 @@ const Card = ({ listOfRest }) => {
                             <p className="text-gray-600 mb-2">
                                 {restaurant.info.cuisines.join(", ")}
                             </p>
-                            <p className="text-gray-600 mb-2">
-                                {restaurant.info.avgRating} Stars (
+                            <p className="text-green-600 mb-2 font-semibold">
+                                ⭐ {restaurant.info.avgRating} Stars (
                                 {restaurant?.info?.totalRatingsString}){" "}
                             </p>
                             <p className="text-gray-600 mb-2">

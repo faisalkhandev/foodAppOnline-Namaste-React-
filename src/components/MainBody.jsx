@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import Card from "./Card";
+import foodAppHomeImage from '../assets/food-app-.png'
 
 const Body = () => {
     // States
@@ -78,7 +79,7 @@ const Body = () => {
                 </div>
                 <div className="flex-shrink-0 w-56 h-56">
                     <img
-                        src="https://images.unsplash.com/photo-1605165566807-508fb529cf3e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2340&q=80"
+                        src={foodAppHomeImage}
                         alt="Getting Started"
                         className="rounded-lg w-full h-full object-cover"
                     />
