@@ -8,8 +8,8 @@ const useOnlineStatus = () => {
     };
 
     useEffect(() => {
-        window.addEventListener("Online", updateOnlineStatus);
-        window.addEventListener("Offline", updateOnlineStatus);
+        window.addEventListener("online", updateOnlineStatus);
+        window.addEventListener("offline", updateOnlineStatus);
     }, []);
 
     return isOnline;

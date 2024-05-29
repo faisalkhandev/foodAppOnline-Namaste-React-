@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Card from "./Card";
 import foodAppHomeImage from '../assets/food-app-.png'
+import useOnlineStatus from "../Hooks/useOnlineStatus";
 
 const Body = () => {
     // States
@@ -56,19 +57,25 @@ const Body = () => {
         setListOfRest(topRes);
     }
 
+    const isOnline = useOnlineStatus();
+
+    if (isOnline === false) {
+        return <h1 className="text-center text-2xl">Please check your internet connection</h1>;
+    }
+
     return (
         <div className="mx-auto max-w-7xl px-4">
             <div className="flex items-center justify-between p-4">
                 <div className="space-y-6 mr-5">
                     <p className="text-sm font-semibold md:text-base sm:text-sm">
-                        Food Delivery App
+                        Food Delivery App 🍔
                     </p>
                     <p className="lg:text-3xl font-bold md:text-lg capitalize sm:text-xs flex flex-wrap ">
                         {" "}
                         Best Online food delivery 🚀
                     </p>
                     <p className="text-base text-gray-600 md:text-lg sm:text-xs text-justify ">
-                        Restaurants with online food delivery in Mumbai
+                        Restaurants with online food delivery in the world 🌍
                     </p>
                     <button
                         type="button"
