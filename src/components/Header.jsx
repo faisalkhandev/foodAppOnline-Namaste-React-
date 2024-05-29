@@ -16,6 +16,10 @@ const menuItems = [
         name: "Contact",
         to: "/contact",
     },
+    {
+        name: "Shop",
+        to: "/shop",
+    }
 ];
 
 export function Header() {

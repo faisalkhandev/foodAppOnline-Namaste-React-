@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import { AboutUs, Contact, Error } from "./Pages"
-import { MainBody, MainLayout, RestaurantMenu } from "./components"
+import { MainBody, MainLayout, RestaurantMenu, Shop, Shrimmer } from "./components"
+import { Suspense } from "react"
 
 
 const appRouter = createBrowserRouter([
@@ -26,6 +27,12 @@ const appRouter = createBrowserRouter([
       {
         path: "restaurant/:resId",
         element: <RestaurantMenu />
+      },
+      {
+        path: '/shop',
+        element: <Suspense fallback={<Shrimmer />}>
+          <Shop />
+        </Suspense>
       }
 
     ],
