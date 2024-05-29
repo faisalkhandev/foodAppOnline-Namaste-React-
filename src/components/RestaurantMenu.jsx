@@ -5,53 +5,10 @@ import { useParams } from "react-router-dom";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Accordion from "./Accordion";
 
-
-
-
-
 const RestaurantMenu = () => {
     const [restInfo, setRestInfo] = useState(null);
     const { resId } = useParams();
     const [currentSlide, setCurrentSlide] = useState(0);
-    const slides = [
-        {
-            id: 1,
-            discount: '50% Off Up to ₹90',
-            code: 'USE SWIGGY50',
-            icon: '🚀',
-            bgColor: 'bg-orange-400'
-        },
-        {
-            id: 2,
-            discount: 'Flat ₹50 Off',
-            code: 'NO CODE REQUIRED',
-            icon: '🤑',
-            bgColor: 'bg-red-400'
-        },
-        {
-            id: 3,
-            discount: '25% Off on Orders Above ₹200',
-            code: 'USE MEME007',
-            icon: '💰',
-            bgColor: 'bg-blue-400'
-        },
-        {
-            id: 4,
-            discount: 'Free Delivery',
-            code: 'NO CODE REQUIRED',
-            icon: '🚴',
-            bgColor: 'bg-green-400'
-        },
-        // Add more slides as needed
-    ];
-
-    const nextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % (slides.length / 2));
-    };
-
-    const prevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + (slides.length / 2)) % (slides.length / 2));
-    };
 
     useEffect(() => {
         const menuAPI = async () => {
@@ -71,7 +28,7 @@ const RestaurantMenu = () => {
     const cardInfo = restInfo?.data?.cards?.[2]?.card?.card?.info;
     const offerDeals = restInfo?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle;
     const accordionInfo = restInfo?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
-    console.log("accordion:::", accordionInfo)
+    const accordionCategory = restInfo?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
 
     const {
         name,
@@ -85,11 +42,15 @@ const RestaurantMenu = () => {
         expectationNotifiers,
     } = cardInfo;
 
-    const {
-        offers
-    } = offerDeals
+    const offers = offerDeals?.offers || [];
 
+    const nextSlide = () => {
+        setCurrentSlide((prev) => (prev + 1) % Math.ceil(offers.length / 2));
+    };
 
+    const prevSlide = () => {
+        setCurrentSlide((prev) => (prev - 1 + Math.ceil(offers.length / 2)) % Math.ceil(offers.length / 2));
+    };
 
     return (
         <>
@@ -137,9 +98,9 @@ const RestaurantMenu = () => {
 
                 <div className="relative w-full max-w-4xl mx-auto mt-10 overflow-hidden">
                     <h1 className="font-bold ml-3">Deals for you</h1>
-                    <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
-                        {offers.map((offer) => (
-                            <div key={offer?.info?.offerIds} className="min-w-2/5 max-w-4xl p-2 flex-shrink-0">
+                    <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${currentSlide * 50}%)` }}>
+                        {offers.map((offer, index) => (
+                            <div key={index} className="min-w-1/2 max-w-1/2 p-2 flex-shrink-0">
                                 <div className="bg-white bg-opacity-50 border border-gray-400 shadow-md rounded-lg p-4 flex items-center">
                                     <div className={`text-white font-bold p-4 rounded-full `}>
                                         <img src={ICON_URL + offer?.info?.offerLogo} alt="top offers" width="48" height="48" />
@@ -168,11 +129,7 @@ const RestaurantMenu = () => {
 
                 {/*Accordion Here*/}
 
-                <Accordion accordionInfo={accordionInfo} />
-
-
-
-
+                <Accordion accordionInfo={accordionInfo} accordionCategory={accordionCategory} />
             </div>
         </>
     );
