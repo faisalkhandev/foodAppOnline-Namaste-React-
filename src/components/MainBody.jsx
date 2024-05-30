@@ -36,7 +36,7 @@ const Body = () => {
         const json = await data.json();
         const arrayOfCards = json.data.cards;
         const restaurant_list = "restaurant_grid_listing";
-        console.log("arrayofCards::", arrayOfCards);
+
 
         arrayOfCards.map(cardObj => {
             if (cardObj.card.card && cardObj.card.card.id === restaurant_list) {
@@ -47,7 +47,7 @@ const Body = () => {
         });
 
     };
-    console.log("listofRest::", listOfRest);
+
 
     useEffect(() => {
         getRestaurants();

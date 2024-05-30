@@ -18,8 +18,6 @@ const Accordion = ({ accordionInfo, accordionCategory }) => {
     const itemCards = accordionInfo?.itemCards;
     const itemCategories = accordionCategory?.categories;
 
-    console.log("accordion::", accordionInfo)
-    console.log("accordionCategory::", itemCategories)
 
     return (
         <>
@@ -38,7 +36,7 @@ const Accordion = ({ accordionInfo, accordionCategory }) => {
                                         <div>
                                             <span className="text-red-500 font-semibold">{item?.card?.info?.ribbon?.text}</span>
                                             <h3 className="text-lg font-bold">{item?.card?.info?.name}</h3>
-                                            <p className="font-semibold">${item?.card?.info?.price / 100}</p>
+                                            <p className="font-semibold">${item?.card?.info?.price ? item?.card?.info?.price / 100 : item?.card?.info?.defaultPrice}</p>
                                             <p className="text-green-600 font-semibold">⭐ {item?.card?.info?.ratings?.aggregatedRating?.rating} ({item?.card?.info?.ratings?.aggregatedRating?.ratingCountV2}+)</p>
                                             <p className="text-slate-700 font-bold">{item?.card?.info?.category}</p>
                                             <p>{item?.card?.info?.description}</p>
@@ -53,9 +51,9 @@ const Accordion = ({ accordionInfo, accordionCategory }) => {
                         ))
                     ) : (
                         itemCategories && itemCategories.length > 0 && itemCategories.map((category, categoryIndex) => {
-                            console.log("categoryInfo:::", category?.itemCards)
+
                             return category?.itemCards.map((item, itemIndex) => {
-                                console.log("item:::", item)
+
                                 return (
                                     <div className="p-4" key={`${categoryIndex}-${itemIndex}`}>
                                         <div className="border-b mb-4">
