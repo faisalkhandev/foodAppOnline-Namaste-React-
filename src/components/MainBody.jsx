@@ -3,12 +3,15 @@ import { useState, useEffect } from "react";
 import Card from "./Card";
 import foodAppHomeImage from '../assets/food-app-.png'
 import useOnlineStatus from "../Hooks/useOnlineStatus";
+import { openRestaurants } from './Card';
 
 const Body = () => {
     // States
     const [listOfRest, setListOfRest] = useState([]);
     const [searchText, setSearchText] = useState("");
     const [filterRestaurants, setFilterRestaurants] = useState([]);
+
+    const OpenedRestaurants = openRestaurants(Card)
 
     // functions
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -132,7 +135,12 @@ const Body = () => {
                 </button>
             </div>
             <div className="m-10">
-                <Card listOfRest={filterRestaurants} />
+                {
+                    listOfRest?.info?.isOpen ? (
+
+                        <OpenedRestaurants listOfRest={listOfRest} />
+                    ) : <Card listOfRest={filterRestaurants} />
+                }
             </div>
         </div>
     );

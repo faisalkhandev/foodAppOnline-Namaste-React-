@@ -47,4 +47,18 @@ const Card = ({ listOfRest }) => {
     );
 };
 
+export const openRestaurants = (WrappedComponent) => {
+    // eslint-disable-next-line react/display-name
+    return (props) => {
+        return (
+            <div>
+                <label className="absolute bg-black text-white m-2 p-2 rounded-lg">
+                    Open
+                </label>
+                <WrappedComponent {...props} />
+            </div>
+        );
+    };
+};
+
 export default Card;
