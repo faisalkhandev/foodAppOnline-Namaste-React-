@@ -1,7 +1,8 @@
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../Hooks/useOnlineStatus";
+import UserContext from "../Hooks/UserContext";
 
 const menuItems = [
     {
@@ -28,12 +29,12 @@ export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const isOnline = useOnlineStatus();
 
+    const { isLoggedin } = useContext(UserContext)
+
     //functions
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
-
-
 
     return (
         <div className="relative w-full bg-white">
@@ -72,6 +73,9 @@ export function Header() {
                     >
                         {" "}
                         Cart (0){" "}
+                    </button>
+                    <button className="bg-slate-700 text-white p-2 mx-3 rounded-lg font-medium">
+                        {isLoggedin}
                     </button>
                 </div>
                 <div className="lg:hidden">
