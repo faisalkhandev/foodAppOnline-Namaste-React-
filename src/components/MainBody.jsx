@@ -1,9 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Card from "./Card";
 import foodAppHomeImage from '../assets/food-app-.png'
 import useOnlineStatus from "../Hooks/useOnlineStatus";
 import { openRestaurants } from './Card';
+import UserContext from "../Hooks/UserContext";
 
 const Body = () => {
     // States
@@ -12,6 +13,7 @@ const Body = () => {
     const [filterRestaurants, setFilterRestaurants] = useState([]);
 
     const OpenedRestaurants = openRestaurants(Card)
+    const { isLoggedin } = useContext(UserContext)
 
     // functions
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -72,6 +74,7 @@ const Body = () => {
                 <div className="space-y-6 mr-5">
                     <p className="text-sm font-semibold md:text-base sm:text-sm">
                         Food Delivery App 🍔
+                        {isLoggedin}
                     </p>
                     <p className="lg:text-3xl font-bold md:text-lg capitalize sm:text-xs flex flex-wrap ">
                         {" "}
