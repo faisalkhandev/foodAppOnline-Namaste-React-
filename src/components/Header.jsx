@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../Hooks/useOnlineStatus";
 import UserContext from "../Hooks/UserContext";
+import { useSelector } from "react-redux";
 
 const menuItems = [
     {
@@ -30,6 +31,10 @@ export function Header() {
     const isOnline = useOnlineStatus();
 
     const { isLoggedin } = useContext(UserContext)
+
+    const selector = useSelector((state) => {
+        return state.item.item
+    })
 
     //functions
     const toggleMenu = () => {
@@ -72,7 +77,7 @@ export function Header() {
                         className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                     >
                         {" "}
-                        Cart (0){" "}
+                        Cart ({selector.length}){" "}
                     </button>
                     <button className="bg-slate-700 text-white p-2 mx-3 rounded-lg font-medium">
                         {isLoggedin}
