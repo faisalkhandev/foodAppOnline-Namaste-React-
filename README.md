@@ -1,4 +1,4 @@
-# 🍔 Food App
+# 🍔 Food App using React, Tailwind, Redux toolkit (Namaste React)
 
 ## Live Demo: 
 https://foodappreactredux.netlify.app/
