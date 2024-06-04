@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { ICON_URL, MENU_API } from "../utils/Constants";
-import Shrimmer from "./Shrimmer";
 import { useParams } from "react-router-dom";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Accordion from "./Accordion";
+import Skeleton from "./Skeleton";
 
 const RestaurantMenu = () => {
     const [restInfo, setRestInfo] = useState(null);
@@ -23,7 +23,7 @@ const RestaurantMenu = () => {
         menuAPI();
     }, [resId]);
 
-    if (!restInfo) return <Shrimmer />;
+    if (!restInfo) return <Skeleton />;
 
     const cardInfo = restInfo?.data?.cards?.[2]?.card?.card?.info;
     const offerDeals = restInfo?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle;
