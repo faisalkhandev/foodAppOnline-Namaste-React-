@@ -33,7 +33,8 @@ export function Header() {
     const { isLoggedin } = useContext(UserContext)
 
     const selector = useSelector((state) => {
-        return state.item.item
+        console.log(state)
+        return state.itemReducer.items
     })
 
     //functions
