@@ -6,7 +6,7 @@ import UserContext from "../Hooks/UserContext"
 const MainLayout = () => {
     return (
         <div>
-            <UserContext.Provider value={{ isLoggedin: 'header' }}>
+            <UserContext.Provider value={{ isLoggedin: 'Contact Us' }}>
                 <Header />
             </UserContext.Provider>
             <Outlet />
