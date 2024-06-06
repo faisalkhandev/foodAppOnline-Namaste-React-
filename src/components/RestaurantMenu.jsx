@@ -26,9 +26,14 @@ const RestaurantMenu = () => {
     if (!restInfo) return <Skeleton />;
 
     const cardInfo = restInfo?.data?.cards?.[2]?.card?.card?.info;
-    const offerDeals = restInfo?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle;
-    const accordionInfo = restInfo?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
-    const accordionCategory = restInfo?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
+    const offerDeals =
+        restInfo?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle;
+    const accordionInfo =
+        restInfo?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+            ?.card;
+    const accordionCategory =
+        restInfo?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
+            ?.card;
 
     const {
         name,
@@ -49,7 +54,10 @@ const RestaurantMenu = () => {
     };
 
     const prevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + Math.ceil(offers.length / 2)) % Math.ceil(offers.length / 2));
+        setCurrentSlide(
+            (prev) =>
+                (prev - 1 + Math.ceil(offers.length / 2)) % Math.ceil(offers.length / 2)
+        );
     };
 
     return (
@@ -57,7 +65,9 @@ const RestaurantMenu = () => {
             <div className="bg-gray-50 min-h-screen">
                 <div className="max-w-4xl mx-auto py-8">
                     <nav className="text-gray-500 text-sm mb-4">
-                        <a href="#" className="hover:text-gray-700">Home</a>
+                        <a href="#" className="hover:text-gray-700">
+                            Home
+                        </a>
                         <span className="mx-1">/</span>
                         <a href="#" className="hover:text-gray-700">
                             {slugs?.city.charAt(0).toUpperCase() + slugs?.city.slice(1)}
@@ -71,7 +81,9 @@ const RestaurantMenu = () => {
                             <b>
                                 <span className="text-green-500 font-bold">⭐</span>{" "}
                                 <span className="text-green-500 font-bold">{avgRating}</span>
-                                <span className="text-gray-600 ml-2">({totalRatingsString})</span>
+                                <span className="text-gray-600 ml-2">
+                                    ({totalRatingsString})
+                                </span>
                                 <span className="text-gray-600 mx-2">·</span>
                                 <span className="text-gray-600">{costForTwoMessage}</span>
                             </b>
@@ -98,16 +110,31 @@ const RestaurantMenu = () => {
 
                 <div className="relative w-full max-w-4xl mx-auto mt-10 overflow-hidden">
                     <h1 className="font-bold ml-3">Deals for you</h1>
-                    <div className="flex transition-transform duration-500" style={{ transform: `translateX(-${currentSlide * 50}%)` }}>
+                    <div
+                        className="flex transition-transform duration-500"
+                        style={{ transform: `translateX(-${currentSlide * 50}%)` }}
+                    >
                         {offers.map((offer, index) => (
-                            <div key={index} className="min-w-1/2 max-w-1/2 p-2 flex-shrink-0">
+                            <div
+                                key={index}
+                                className="min-w-1/2 max-w-1/2 p-2 flex-shrink-0"
+                            >
                                 <div className="bg-white bg-opacity-50 border border-gray-400 shadow-md rounded-lg p-4 flex items-center">
                                     <div className={`text-white font-bold p-4 rounded-full `}>
-                                        <img src={ICON_URL + offer?.info?.offerLogo} alt="top offers" width="48" height="48" />
+                                        <img
+                                            src={ICON_URL + offer?.info?.offerLogo}
+                                            alt="top offers"
+                                            width="48"
+                                            height="48"
+                                        />
                                     </div>
                                     <div className="ml-4">
-                                        <div className="font-bold text-lg">{offer?.info?.header}</div>
-                                        <div className="text-gray-600">{offer?.info?.couponCode}</div>
+                                        <div className="font-bold text-lg">
+                                            {offer?.info?.header}
+                                        </div>
+                                        <div className="text-gray-600">
+                                            {offer?.info?.couponCode}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +156,10 @@ const RestaurantMenu = () => {
 
                 {/*Accordion Here*/}
 
-                <Accordion accordionInfo={accordionInfo} accordionCategory={accordionCategory} />
+                <Accordion
+                    accordionInfo={accordionInfo}
+                    accordionCategory={accordionCategory}
+                />
             </div>
         </>
     );

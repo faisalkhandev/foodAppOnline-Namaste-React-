@@ -18,7 +18,7 @@ const Accordion = ({ accordionInfo, accordionCategory }) => {
     };
 
     function handleAddItem(item) {
-        console.log("dispath:;", item)
+        console.log("dispatch:;", item);
         dispatch(addCartItem(item));
     }
 
@@ -87,7 +87,7 @@ const Accordion = ({ accordionInfo, accordionCategory }) => {
                                             />
                                             <button
                                                 className="mt-2 w-20 bg-green-500 text-white px-4 py-1 rounded"
-                                                onClick={handleAddItem}
+                                                onClick={() => handleAddItem(item?.card?.info?.id)}
                                             >
                                                 ADD
                                             </button>
