@@ -19,7 +19,7 @@ const ErrorPage = () => {
             <p className="text-lg text-gray-700 mb-2">
                 Oops, an error has occurred.
             </p>
-            <p className="text-md text-gray-500 italic mb-6">
+            <p className="text-lg text-gray-500 italic mb-6 md:text-red-700 lg:text-red-500">
                 {errorMessage}
             </p>
             <button

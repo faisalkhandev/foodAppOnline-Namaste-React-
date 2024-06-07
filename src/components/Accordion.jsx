@@ -87,7 +87,7 @@ const Accordion = ({ accordionInfo, accordionCategory }) => {
                                             />
                                             <button
                                                 className="mt-2 w-20 bg-green-500 text-white px-4 py-1 rounded"
-                                                onClick={() => handleAddItem(item?.card?.info?.id)}
+                                                onClick={() => handleAddItem(item?.card?.info)}
                                             >
                                                 ADD
                                             </button>
@@ -141,7 +141,7 @@ const Accordion = ({ accordionInfo, accordionCategory }) => {
                                                     <button
                                                         className="mt-2 w-20 bg-green-500 text-white px-4 py-1 rounded"
                                                         onClick={() =>
-                                                            handleAddItem(item?.card?.info?.id)
+                                                            handleAddItem(item?.card?.info)
                                                         }
                                                     >
                                                         ADD

@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
-import { AboutUs, Contact, Error } from "./Pages"
+import { AboutUs, Cart, Contact, Error } from "./Pages"
 import { MainBody, MainLayout, RestaurantMenu, Shop, Shrimmer } from "./components"
 import { Suspense } from "react"
 
@@ -33,6 +33,10 @@ const appRouter = createBrowserRouter([
         element: <Suspense fallback={<Shrimmer />}>
           <Shop />
         </Suspense>
+      },
+      {
+        path: '/cart',
+        element: <Cart />
       }
 
     ],
