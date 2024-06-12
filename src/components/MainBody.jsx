@@ -19,7 +19,7 @@ const Body = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const getRestaurants = async () => {
         const data = await fetch(
-            "https://corsproxy.io/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D12.9351929%26lng%3D77.62448069999999%26page_type%3DDESKTOP_WEB_LISTING"
+            "https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING"
         );
 
         { /*
@@ -36,6 +36,7 @@ const Body = () => {
         //* This is the better way. Another approach
 
         const json = await data.json();
+        console.log("json:::", json)
         const arrayOfCards = json.data.cards;
         const restaurant_list = "restaurant_grid_listing";
 
