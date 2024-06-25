@@ -16,6 +16,7 @@ const RestaurantMenu = () => {
                 const response = await fetch(MENU_API + resId);
                 const menuJson = await response.json();
                 setRestInfo(menuJson);
+                console.log("menuJson:", menuJson); // Log the entire response
             } catch (error) {
                 console.log(error);
             }
@@ -26,14 +27,15 @@ const RestaurantMenu = () => {
     if (!restInfo) return <Skeleton />;
 
     const cardInfo = restInfo?.data?.cards?.[2]?.card?.card?.info;
-    const offerDeals =
-        restInfo?.data?.cards[3]?.card?.card?.gridElements?.infoWithStyle;
-    const accordionInfo =
-        restInfo?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-            ?.card;
-    const accordionCategory =
-        restInfo?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card
-            ?.card;
+
+    const offerDeals = restInfo?.data?.cards?.[3]?.card?.card?.gridElements?.infoWithStyle;
+
+    console.log("offers;::", offerDeals);
+
+    const accordionInfo = restInfo?.data?.cards?.[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card?.card;
+    console.log("accordionInfo::", accordionInfo);
+
+    const accordionCategory = restInfo?.data?.cards?.[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card?.card;
 
     const {
         name,
@@ -114,31 +116,38 @@ const RestaurantMenu = () => {
                         className="flex transition-transform duration-500"
                         style={{ transform: `translateX(-${currentSlide * 50}%)` }}
                     >
-                        {offers.map((offer, index) => (
-                            <div
-                                key={index}
-                                className="min-w-1/2 max-w-1/2 p-2 flex-shrink-0"
-                            >
-                                <div className="bg-white bg-opacity-50 border border-gray-400 shadow-md rounded-lg p-4 flex items-center">
-                                    <div className={`text-white font-bold p-4 rounded-full `}>
-                                        <img
-                                            src={ICON_URL + offer?.info?.offerLogo}
-                                            alt="top offers"
-                                            width="48"
-                                            height="48"
-                                        />
-                                    </div>
-                                    <div className="ml-4">
-                                        <div className="font-bold text-lg">
-                                            {offer?.info?.header}
+                        {offers.length > 0 ? (
+                            offers.map((offer, index) => (
+                                <div
+                                    key={index}
+                                    className="min-w-1/2 max-w-1/2 p-2 flex-shrink-0"
+                                >
+                                    <div className="bg-white bg-opacity-50 border border-gray-400 shadow-md rounded-lg p-4 flex items-center">
+                                        <div className="p-4 rounded-full">
+                                            <img
+                                                src={ICON_URL + offer?.info?.offerLogo}
+                                                alt="top offers"
+                                                width="48"
+                                                height="48"
+                                            />
                                         </div>
-                                        <div className="text-gray-600">
-                                            {offer?.info?.couponCode}
+                                        <div className="ml-4">
+                                            <div className="font-bold text-lg">
+                                                {offer?.info?.header}
+                                            </div>
+                                            <div className="text-gray-600">
+                                                {offer?.info?.couponCode}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            ))
+                        ) : (
+                            <div className="p-4 text-center">
+                                <div className="text-gray-600 font-bold text-lg">No offers available</div>
                             </div>
-                        ))}
+                        )}
+
                     </div>
                     <button
                         className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-100 p-2 rounded-full shadow-md"

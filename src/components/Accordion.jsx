@@ -12,6 +12,8 @@ const Accordion = ({ accordionInfo, accordionCategory }) => {
     const [isOpen, setIsOpen] = useState(true);
     const dispatch = useDispatch();
 
+    console.log("accordionInfo:::", accordionCategory)
+
     // functions
     const toggleAccordion = () => {
         setIsOpen(!isOpen);
