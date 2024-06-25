@@ -1,6 +1,6 @@
 import { Menu, X } from "lucide-react";
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useOnlineStatus from "../Hooks/useOnlineStatus";
 import UserContext from "../Hooks/UserContext";
 import { useSelector } from "react-redux";
@@ -30,6 +30,7 @@ export function Header() {
     const isOnline = useOnlineStatus();
 
     const { isLoggedin } = useContext(UserContext);
+    const navigate = useNavigate()
 
     const selector = useSelector((state) => {
         console.log(state);
@@ -40,6 +41,10 @@ export function Header() {
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+
+    function handleRoute() {
+        navigate("/cart")
+    }
 
     return (
         <div className="sticky top-0 z-50 bg-white shadow-lg">
@@ -73,6 +78,7 @@ export function Header() {
                 </div>
                 <div className="hidden lg:block">
                     <button
+                        onClick={handleRoute}
                         type="button"
                         className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
                         {" "}Cart ({selector.length}){" "}
