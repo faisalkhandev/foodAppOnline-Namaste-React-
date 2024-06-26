@@ -17,6 +17,8 @@ A food app inspired by Namaste React, built with React, Redux Toolkit, Tailwind,
 ![Food App Namaste React Home Page](https://github.com/faisalkhandev/foodAppOnline-Namaste-React-/assets/23612271/631d4af7-5e30-4891-9dbd-897fdf8d500b)
 ![Food App Namaste React Restaurant Details](https://github.com/faisalkhandev/foodAppOnline-Namaste-React-/assets/23612271/258f2156-401c-4459-a570-1cfc76069299)
 ![Food App Namaste React Details](https://github.com/faisalkhandev/foodAppOnline-Namaste-React-/assets/23612271/4711bb23-8172-4494-97ff-d1d3c661f86d)
+![menuFood](https://github.com/faisalkhandev/foodAppOnline-Namaste-React-/assets/23612271/e562f70e-fe49-4216-97d2-ccda44bf83d6)
+![cartpage](https://github.com/faisalkhandev/foodAppOnline-Namaste-React-/assets/23612271/c0e8a357-6053-46b3-864e-9f5036a1286f)
 
 ## 🛠️ Installation
 
