@@ -5,41 +5,40 @@ import foodAppHomeImage from '../assets/food-app-.png'
 import useOnlineStatus from "../Hooks/useOnlineStatus";
 import { openRestaurants } from './Card';
 import UserContext from "../Hooks/UserContext";
+import Shrimmer from "./Shrimmer";
 
 const Body = () => {
     // States
     const [listOfRest, setListOfRest] = useState([]);
     const [searchText, setSearchText] = useState("");
     const [filterRestaurants, setFilterRestaurants] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-    const OpenedRestaurants = openRestaurants(Card)
-    const { isLoggedin } = useContext(UserContext)
+    const OpenedRestaurants = openRestaurants(Card);
+    const { isLoggedin } = useContext(UserContext);
 
     // functions
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     const getRestaurants = async () => {
+        setLoading(true);
         const data = await fetch(
             "https://foodfire.onrender.com/api/restaurants?lat=21.1702401&lng=72.83106070000001&page_type=DESKTOP_WEB_LISTING"
         );
 
-        { /*
+        /*
              ! this is one way of getting data. Kind of hard. you have to keep drilling. 
               const json = await data.json();
-              console.log("json::", json)
+              
               setListOfRest(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []
               );
               setFilterRestaurants(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants || []
               );
           */
-        }
 
         //* This is the better way. Another approach
 
         const json = await data.json();
-        console.log("json:::", json)
         const arrayOfCards = json.data.cards;
         const restaurant_list = "restaurant_grid_listing";
-
 
         arrayOfCards.map(cardObj => {
             if (cardObj.card.card && cardObj.card.card.id === restaurant_list) {
@@ -49,6 +48,7 @@ const Body = () => {
             }
         });
 
+        setLoading(false);
     };
 
 
@@ -68,6 +68,12 @@ const Body = () => {
     if (isOnline === false) {
         return <h1 className="text-center text-2xl">Please check your internet connection</h1>;
     }
+
+    if (loading) {
+        return <Shrimmer />;
+    }
+
+
 
     return (
         <div className="mx-auto max-w-7xl px-4">
