@@ -33,7 +33,7 @@ export function Header() {
     const navigate = useNavigate()
 
     const selector = useSelector((state) => {
-        console.log(state);
+
         return state.itemReducer.items;
     });
 

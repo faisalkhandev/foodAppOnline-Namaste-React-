@@ -20,7 +20,7 @@ const useFetchRestaurantMenu = (resId) => {
             setRestInfo(json.data);
         }
         catch (error) {
-            console.log(error);
+
         }
     }
     return restInfo;

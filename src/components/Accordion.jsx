@@ -12,7 +12,7 @@ const Accordion = ({ accordionInfo, accordionCategory }) => {
     const [isOpen, setIsOpen] = useState(true);
     const dispatch = useDispatch();
 
-    console.log("accordionInfo:::", accordionCategory)
+
 
     // functions
     const toggleAccordion = () => {
@@ -20,7 +20,7 @@ const Accordion = ({ accordionInfo, accordionCategory }) => {
     };
 
     function handleAddItem(item) {
-        console.log("dispatch:;", item);
+
         dispatch(addCartItem(item));
     }
 

@@ -16,9 +16,9 @@ const RestaurantMenu = () => {
                 const response = await fetch(MENU_API + resId);
                 const menuJson = await response.json();
                 setRestInfo(menuJson);
-                console.log("menuJson:", menuJson); // Log the entire response
+
             } catch (error) {
-                console.log(error);
+
             }
         };
         menuAPI();
@@ -30,10 +30,10 @@ const RestaurantMenu = () => {
 
     const offerDeals = restInfo?.data?.cards?.[3]?.card?.card?.gridElements?.infoWithStyle;
 
-    console.log("offers;::", offerDeals);
+
 
     const accordionInfo = restInfo?.data?.cards?.[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card?.card;
-    console.log("accordionInfo::", accordionInfo);
+
 
     const accordionCategory = restInfo?.data?.cards?.[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.[2]?.card?.card;
 
@@ -77,7 +77,7 @@ const RestaurantMenu = () => {
                         <span className="mx-1">/</span>
                         <span className="text-gray-900">{name}</span>
                     </nav>
-                    <h1 className="text-3xl font-bold text-black mb-4 my-6">{name}</h1>
+                    <h1 className="text-3xl font-bold text-black mb-4 my-6 text">{name}</h1>
                     <div className="bg-white shadow-md rounded-lg p-4">
                         <div className="flex items-center mb-2">
                             <b>
