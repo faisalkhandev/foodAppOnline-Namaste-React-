@@ -11,7 +11,8 @@ const cartSlice = createSlice({
             state.items.push(action.payload)
         },
         removeCartItem: (state) => {
-            state.items.pop()
+            // state.items.pop() remove one cart only
+            state.items = []
         },
         clearCart: (state) => {
             state.items.length === 0
